@@ -1,0 +1,42 @@
+INSERT INTO crs_college (id, collegeName, collegeDesc) VALUES (1, 'CET', 'College of Engineering');
+
+INSERT INTO crs_user (id, password, email, firstName, middleName, lastName, is_active, is_admin, is_chairperson, is_faculty, is_student) VALUES (2, 'pbkdf2_sha256$216000+97hC...', 'cmmolina@plm.edu.ph', 'C', 'M', 'Molina',1, 0, 1, 0, 0);
+INSERT INTO crs_chairpersoninfo (cpersonUser_id) VALUES (2);
+
+INSERT INTO crs_department (courseName, collegeID_id, chairperson_id, courseDesc) VALUES ('BSIT', 1, (SELECT cpersonUser_id from crs_chairpersoninfo LIMIT 1), 'Bachelor of Science in Information Technology');
+INSERT INTO crs_department (courseName, collegeID_id, chairperson_id, courseDesc) VALUES ('BSEE', 1, (SELECT cpersonUser_id from crs_chairpersoninfo LIMIT 1), 'Bachelor of Science in Electrical Engineering');
+
+INSERT INTO crs_user (id, password, email, firstName, middleName, lastName, is_active, is_admin, is_chairperson, is_faculty, is_student) VALUES
+( 3, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'beier.concepcion@plm.edu.ph', 'Porter', 'M', 'Torphy', 1, 0, 0, 1, 0),
+( 4, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'cbailey@plm.edu.ph', 'Javonte', 'D', 'Murphy', 1, 0, 0, 1, 0),
+( 5, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'isac.mckenzie@plm.edu.ph', 'Keira', 'T', 'Cummings', 1, 0, 0, 1, 0);
+INSERT INTO crs_facultyinfo (facultyUser_id, facultyID, facultyWorkStatus, facultyGender, facultyCivilStatus, facultyCitizenship, facultyContact, facultyIn, facultyOut, collegeID_id, departmentID_id) VALUES
+(3, 201900000, 'Full-Time', 'Male', 'Separated', 'Filipino', '09123456789', '7:00', '20:00', 1, 1 ),
+(4, 201900001, 'Full-Time', 'Male', 'Single', 'Filipino', '09123456789', '7:00', '20:00', 1, 1 ),
+(5, 201900002, 'Part-Time', 'Male', 'Separated', 'Filipino', '09123456789', '7:00', '20:00', 1, 1 );
+
+INSERT INTO crs_blocksection (blockYear, blockSection, blockCourse, curryear, college_id, adviser_id) VALUES (1, 1, 'BSIT', '2020', 1, (SELECT facultyUser_id from crs_facultyinfo ORDER BY FLOOR(RAND()+1) LIMIT 1 ));
+INSERT INTO crs_blocksection (blockYear, blockSection, blockCourse, curryear, college_id, adviser_id) VALUES (1, 1, 'BSEE', '2020', 1, (SELECT facultyUser_id from crs_facultyinfo ORDER BY FLOOR(RAND()+1) LIMIT 1 ));
+
+INSERT INTO crs_user (id, password, email, firstName, middleName, lastName, is_active, is_admin, is_chairperson, is_faculty, is_student) VALUES
+( 6, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'dmuller@plm.edu.ph', 'Sally', 'G', 'Fadel', 1, 0, 0, 0, 1),
+( 7, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'chandler.willms@plm.edu.ph', 'Justine', 'W', 'Morissette', 1, 0, 0, 0, 1),
+( 8, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'turcotte.grant@plm.edu.ph', 'Pink', 'O', 'Quigley', 1, 0, 0, 0, 1),
+( 9, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'vito88@plm.edu.ph', 'Katelynn', 'N', 'Kihn', 1, 0, 0, 0, 1),
+( 10, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'amparo32@plm.edu.ph', 'Merle', 'J', 'Grady', 1, 0, 0, 0, 1),
+( 11, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'lori.klein@plm.edu.ph', 'Kane', 'C', 'Bednar', 1, 0, 0, 0, 1),
+( 12, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'leannon.effie@plm.edu.ph', 'Zoie', 'V', 'Paucek', 1, 0, 0, 0, 1),
+( 13, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'marquardt.taya@plm.edu.ph', 'Laurence', 'P', 'Cruickshank', 1, 0, 0, 0, 1),
+( 14, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'alexa63@plm.edu.ph', 'Leonardo', 'W', 'Larson', 1, 0, 0, 0, 1),
+( 15, 'pbkdf2_sha256$216000$I0OGuUPqWu24$WvNdj16aD9L+97hC...', 'reina.powlowski@plm.edu.ph', 'Adelia', 'P', 'Buckridge', 1, 0, 0, 0, 1);
+INSERT INTO crs_studentinfo ( studentUser_id, studentID, studentGender, studentCitizenship, studentCivilStatus, studentContact, studentRegStatus, studentType, studentCourse, studentYearLevel, collegeID_id, departmentID_id, studentSection_id ) VALUES
+(6, 202200000, 'Male', 'Filipino', 'Single', '09123456789', 'Regular', 'New', 'BSIT', '1', 1, 1, 1),
+(7, 202200001, 'Female', 'Filipino', 'Single', '09123456789', 'Irregular', 'Old', 'BSIT', '1', 1, 1, 1),
+(8, 202200002, 'Male', 'Filipino', 'Single', '09123456789', 'Irregular', 'New', 'BSIT', '1', 1, 1, 1),
+(9, 202200003, 'Male', 'Filipino', 'Single', '09123456789', 'Irregular', 'Old', 'BSEE', '1', 1, 2, 2),
+(10, 202200004, 'Female', 'Filipino', 'Single', '09123456789', 'Regular', 'Old', 'BSIT', '1', 1, 1, 1),
+(11, 202200005, 'Female', 'Filipino', 'Single', '09123456789', 'Irregular', 'Old', 'BSEE', '1', 1, 2, 2),
+(12, 202200006, 'Female', 'Filipino', 'Single', '09123456789', 'Regular', 'Old', 'BSIT', '1', 1, 1, 1),
+(13, 202200007, 'Female', 'Filipino', 'Single', '09123456789', 'Irregular', 'Old', 'BSEE', '1', 1, 2, 2),
+(14, 202200008, 'Male', 'Filipino', 'Single', '09123456789', 'Regular', 'New', 'BSEE', '1', 1, 2, 2),
+(15, 202200009, 'Male', 'Filipino', 'Single', '09123456789', 'Irregular', 'New', 'BSEE', '1', 1, 2, 2);
